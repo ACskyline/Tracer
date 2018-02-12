@@ -1,5 +1,5 @@
 # Tracer
-This project is a software renderer featuring path tracing. The project is the first of the two projects of CIS-561 Advanced Computer Graphics, based on Qt.
+This project is a software renderer featuring ray tracing. The project is the first of the two projects of CIS-561 Advanced Computer Graphics, based on Qt.
 
 ## Translucent and transmissive material(w/o sampling)
 
