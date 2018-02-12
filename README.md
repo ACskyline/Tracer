@@ -23,7 +23,7 @@ This project is a software renderer featuring path tracing. The project is the f
 
 ![](3.bmp)
 
-## 16 grid sample and one transmissive material with maxal recursion set at 2
+## 16 grid sample and one transmissive material with maximum recursion set at 2
 
 ![](5-16sample.bmp)
 
