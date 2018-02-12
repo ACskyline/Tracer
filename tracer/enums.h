@@ -1,0 +1,9 @@
+#pragma once
+
+enum SampleMode {
+    RANDOM, GRID, STRATIFIED
+};
+
+enum WarpMethod {
+    NONE, DISC_UNIFORM, DISK_CONCENTRIC, SPHERE, SPHERE_CAP, HEMISPHERE_UNIFORM, HEMISPHERE_COSINE
+};
