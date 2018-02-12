@@ -7,11 +7,11 @@ This project is a software renderer featuring path tracing. The project is the f
 
 ## Soft Shadow(100 grid sample of light source)
 
-*Shadow receiver away from shadow caster
+* Shadow receiver away from shadow caster
 
 ![](0.bmp)
 
-*Shadow receiver near to shadow caster
+* Shadow receiver near to shadow caster
 
 ![](2.bmp)
 
