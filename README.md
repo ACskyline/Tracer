@@ -41,7 +41,7 @@ This project is a path tracer. It is developed in Qt.
 
 ### Implicit Surface
 ### Chrome Material
-###### Fulllight Integrator 400x400 pixels 10x10 samples 5 maximum recursions 60 hours
+###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 60 hours
 
 ![](5_400_20_5_60h.png)
 =====
