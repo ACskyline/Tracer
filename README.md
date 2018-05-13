@@ -1,32 +1,73 @@
 # Tracer
-This project is a software renderer featuring ray tracing. The project is the first of the two projects of CIS-561 Advanced Computer Graphics, based on Qt.
+This project is a path tracer. It is developed in Qt.
 
-## Translucent and transmissive material(w/o sampling)
+### Lens camera 
+###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 1.5 hours
 
-![](8.bmp)
+![](1_1024_20_5_1.5h.png)
+=====
 
-## Soft Shadow(100 grid sample of light source)
+### Lens camera 
+### BVH + KD Tree
+### Texture
+### Normal Map
+###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 6 hours
 
-* Shadow receiver away from shadow caster
+![](2_1024_20_5_6h.png)
+=====
 
-![](0.bmp)
+### BVH + KD Tree
+### Chrome Material
+###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 63.5 hours
 
-* Shadow receiver near to shadow caster
+![](3_1024_20_5_63.5h.png)
+=====
 
-![](2.bmp)
+### BVH + KD Tree
+### Texture 
+### Normal Map
+### Chrome Material
+###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 7.8 hours
 
-## Ambient Occlusion(100 grid sample on material)
+![](4_1024_20_5_7.8h.png)
+=====
 
-![](1.bmp)
+### Implicit Surface
+### Chrome Material
+###### Fulllight Integrator 400x400 pixels 10x10 samples 5 maximum recursions 5.6 hours
 
-## Ambient Occlusion and Soft Shadow
+![](5_400_10_5_5.6h.png)
+=====
 
-![](3.bmp)
+### Implicit Surface
+### Chrome Material
+###### Fulllight Integrator 400x400 pixels 10x10 samples 5 maximum recursions 60 hours
 
-## 16 grid sample and one transmissive material with maximum recursion set at 2
+![](5_400_20_5_60h.png)
+=====
 
-![](5-16sample.bmp)
+### Contructive Solid Geometry
+### Difference and Union
+###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
 
-## 100 stratified sample
+![](CSG_difference_union.png)
+=====
 
-![](7-100sample-stratified.bmp)
+### Contructive Solid Geometry
+### Intersection and Union
+###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
+
+![](CSG_intersection_union.png)
+=====
+
+### Directional Light
+###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 10 minutes
+
+![](DirectionalLight.png)
+=====
+
+### Environment Light
+###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
+
+![](EnvironmentLight.png)
+=====
