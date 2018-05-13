@@ -53,7 +53,7 @@ This project is a path tracer. It is developed in Qt.
 ![](CSG_difference_union.png)
 =====
 
-### Contructive Solid Geometry
+### Constructive Solid Geometry
 ### Intersection and Union
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
 
