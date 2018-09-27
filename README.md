@@ -1,5 +1,5 @@
 # Tracer
-This project is a path tracer. It is developed in Qt.
+This project is a path tracer. It is developed in Qt. Multi-importance sampling and Ruassian roulette termination are used to make the integrator converge faster. Micro-facet model and fresnell effect are implemented. Constructive solid geometry and signed distance field are used to produce procudural complex geometry. A experimental photon mapper is also included.
 
 * ### Lens Based Camera 
 ###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 1.5 hours
@@ -70,4 +70,14 @@ This project is a path tracer. It is developed in Qt.
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
 
 ![](EnvironmentLight.png)
+=====
+
+* ### Experimental Photon Mapper
+###### Photon Integrator 500,000 photons emitted, sampling radius 1.9
+
+![](photon_500000_1.9.png)
+
+###### Photon Integrator 2,000,000 photons emitted, sampling radius 1.8
+
+![](photon_2000000_1.8.png)
 =====
