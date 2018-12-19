@@ -1,13 +1,15 @@
 # Tracer
 This project is a path tracer. It is developed in Qt. Multi-importance sampling and Ruassian roulette termination are used to make the integrator converge faster. Micro-facet model and fresnel effect are implemented. Constructive solid geometry and signed distance field are used to produce procudural complex geometry. An experimental photon mapper is also included.
 
+---
+
 * ### Lens Based Camera 
 
 ###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 1.5 hours
 
 ![](1_1024_20_5_1.5h.png)
 
-=====
+---
 
 * ### Lens Based Camera
 
@@ -23,7 +25,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ###### (N64 Catridge model made by Chris Sweetwood @ sketchfab)
 
-=====
+---
 
 * ### BVH + KD Tree
 
@@ -35,7 +37,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ###### (Metal Gear Rex model made by me)
 
-=====
+---
 
 * ### BVH + KD Tree
 
@@ -51,7 +53,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ###### (Game Boy model made by danny_p3d @ sketchfab)
 
-=====
+---
 
 * ### Implicit Surface
 
@@ -61,7 +63,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ![](5_400_10_5_5.6h.png)
 
-=====
+---
 
 * ### Implicit Surface
 
@@ -70,7 +72,8 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 60 hours
 
 ![](5_400_20_5_60h.png)
-=====
+
+---
 
 * ### Contructive Solid Geometry
 
@@ -79,7 +82,8 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
 
 ![](CSG_difference_union.png)
-=====
+
+---
 
 * ### Constructive Solid Geometry
 
@@ -88,7 +92,8 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 1 minute
 
 ![](CSG_intersection_union.png)
-=====
+
+---
 
 * ### Directional Light
 
@@ -96,7 +101,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ![](DirectionalLight.png)
 
-=====
+---
 
 * ### Environment Light
 
@@ -104,7 +109,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ![](EnvironmentLight.png)
 
-=====
+---
 
 * ### Experimental Photon Mapper
 
@@ -115,5 +120,3 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Photon Integrator 2,000,000 photons emitted, sampling radius 1.8
 
 ![](photon_2000000_1.8.png)
-
-=====
