@@ -14,6 +14,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 6 hours
 
 ![](2_1024_20_5_6h.png)
+###### (N64 Catridge model made by Chris Sweetwood @ sketchfab)
 =====
 
 * ### BVH + KD Tree
@@ -21,6 +22,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 63.5 hours
 
 ![](3_1024_20_5_63.5h.png)
+###### (Metal Gear Rex model is made by me)
 =====
 
 * ### BVH + KD Tree
@@ -30,6 +32,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 ###### Fulllight Integrator 1024x1024 pixels 20x20 samples 5 maximum recursions 7.8 hours
 
 ![](4_1024_20_5_7.8h.png)
+###### (Game Boy model is made by danny_p3d @ sketchfab)
 =====
 
 * ### Implicit Surface
