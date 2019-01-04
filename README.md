@@ -95,6 +95,16 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling 
 
 ---
 
+* ### Multi-Importance Sampling
+
+Directlight Integrator 768x512 pixels 10x10 samples
+
+|          Without MIS         |             With MIS            |
+|:----------------------------:|:-------------------------------:|
+|![](veach100SamplesDirect.png)|![](veach100SamplesMISDirect.png)|
+
+---
+
 * ### Directional Light
 
 ###### Fulllight Integrator 400x400 pixels 20x20 samples 5 maximum recursions 10 minutes
