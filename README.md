@@ -1,5 +1,5 @@
 # Tracer
-This project is a path tracer. It is developed in Qt. Multi-importance sampling and Ruassian roulette termination are used to make the integrator converge faster. Micro-facet model and fresnel effect are implemented. Constructive solid geometry and signed distance field are used to produce procudural complex geometry. An experimental photon mapper is also included.
+This project is a path tracer. It is developed in Qt. Multi-importance sampling, ruassian roulette termination, micro-facet material, fresnel effect, constructive solid geometry and signed distance field and an experimental photon mapper are implemented.
 
 ---
 
