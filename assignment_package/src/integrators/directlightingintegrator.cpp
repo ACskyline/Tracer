@@ -62,7 +62,7 @@ Color3f DirectLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::sh
             Vector3f wi;
             float pdfLight;
             Color3f colorLight = scene.lights[lightRand]->Sample_Li(it, sampler->Get2D(), &wi, &pdfLight);
-            pdfLight /= lightCount;
+            //pdfLight /= lightCount;
 
 #ifdef DD
             qDebug() << " colorLight "  << colorLight.x << "," << colorLight.y << "," << colorLight.z;
@@ -259,7 +259,7 @@ Color3f DirectLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::sh
                     {
                         if(!sampledSpecular)
                         {
-                            float pdfLight2 = scene.lights[lightRand]->Pdf_Li(it, wi_temp) / (float)lightCount;
+                            float pdfLight2 = scene.lights[lightRand]->Pdf_Li(it, wi_temp);// / (float)lightCount;
 
                             if(pdfLight2 == 0)
                             {
@@ -282,7 +282,7 @@ Color3f DirectLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::sh
 #ifdef MY_DEBUG
         qDebug() << "!!!!!!sample bsdf finish. Ld:" << Ld.x << "," << Ld.y << "," << Ld.z;
 #endif
-            finalColor += it.Le(wo) + Ld;
+            finalColor += it.Le(wo) + Ld * (float)scene.lights.size();
         }
         else
         {

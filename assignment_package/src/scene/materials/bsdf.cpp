@@ -158,9 +158,9 @@ float BSDF::Pdf(const Vector3f &woW, const Vector3f &wiW, BxDFType flags) const
     {
         if(bxdfs[i]!=nullptr&&bxdfs[i]->MatchesFlags(flags))
         {
-            //result += bxdfs[i]->Pdf(woL,wiL);
-            float dot = glm::dot(wiW, normal);
-            result += dot / glm::pi<float>();
+            result += bxdfs[i]->Pdf(woL,wiL);
+            //float dot = glm::dot(wiW, normal);
+            //result += dot / glm::pi<float>();
             //qDebug() << "wi:" << wiW.x << ","  << wiW.y << ","  << wiW.z;
             //qDebug() << "normal:" << normal.x << ","  << normal.y << ","  << normal.z;
             //qDebug() << "dot:" << dot;

@@ -32,10 +32,19 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
 #endif
 
 #ifdef MY_DEBUG
-                        qDebug() << "start throughput:" << throughput.x << "," << throughput.y << "," << throughput.z;
+            qDebug() << "start throughput:" << throughput.x << "," << throughput.y << "," << throughput.z;
 #endif
             Vector3f wo = -rayTemp.direction;
 
+            //!!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!
+            //Since your path tracer computes the direct lighting a given
+            //intersection receives as its own term, your path tracer must
+            //not include too much light. This means that every ray which
+            //already computed the direct lighting term should not incorporate
+            //the Le term of the light transport equation into its light
+            //contribution. In other words, unless a particular ray came
+            //directly from the camera or from a perfectly specular surface,
+            //Le should be ignored.
             if(depth==depthMax||specularBounce)
                 finalColor += it.Le(wo) * throughput;
 
@@ -47,7 +56,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
                 Vector3f wi;
                 float pdfLight;
                 Color3f colorLight = scene.lights[lightRand]->Sample_Li(it, sampler->Get2D(), &wi, &pdfLight);
-                pdfLight /= lightCount;
+                //pdfLight;// /= lightCount;
 
                 Color3f Ld(0.f);//Direct light MIS color
                 //1.Direct light MIS
@@ -96,7 +105,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
                         }
                     }
 #ifdef MY_DEBUG
-                        qDebug() << "Ld after sample light" << Ld.x << "," << Ld.y << "," << Ld.z;
+                    qDebug() << "Ld after sample light" << Ld.x << "," << Ld.y << "," << Ld.z;
 #endif
 
                     //Sample BSDF with multiple importance sampling
@@ -134,7 +143,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
                             {
                                 if(!sampledSpecular)
                                 {
-                                    float pdfLight2 = scene.lights[lightRand]->Pdf_Li(it, wi_temp) / (float)lightCount;
+                                    float pdfLight2 = scene.lights[lightRand]->Pdf_Li(it, wi_temp);// / (float)lightCount;
 
                                     if(pdfLight2 == 0)
                                     {
@@ -154,16 +163,16 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
                     }
 
 #ifdef MY_DEBUG
-                        qDebug() << "Ld after sample BSDF" << Ld.x << "," << Ld.y << "," << Ld.z;
+                    qDebug() << "Ld after sample BSDF" << Ld.x << "," << Ld.y << "," << Ld.z;
 #endif
 
                 }
 
 
                 //2.final color
-                finalColor += Ld * throughput;
+                finalColor += Ld * throughput  * (float)scene.lights.size();
 #ifdef MY_DEBUG
-                        qDebug() << "after MIS finalColor:" << finalColor.x << "," << finalColor.y << "," << finalColor.z;
+                qDebug() << "after MIS finalColor:" << finalColor.x << "," << finalColor.y << "," << finalColor.z;
 #endif
 
                 Vector3f wi_global;
@@ -196,7 +205,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
             else
             {
 #ifdef MY_DEBUG
-                        qDebug() << "no bsdf";
+                qDebug() << "no bsdf";
 #endif
                 break;
             }
@@ -204,13 +213,13 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
         else
         {
 #ifdef MY_DEBUG
-                        qDebug() << "no hit";
+            qDebug() << "no hit";
 #endif
             break;
         }
 
 #ifdef MY_DEBUG
-                        qDebug() << "start throughput:" << throughput.x << "," << throughput.y << "," << throughput.z;
+        qDebug() << "start throughput:" << throughput.x << "," << throughput.y << "," << throughput.z;
 #endif
 
         if(depthMax - depth >= MINDEPTH )
@@ -219,7 +228,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
             float maxThroughput = glm::max(glm::max(throughput.x, throughput.y),throughput.z);
 
 #ifdef MY_DEBUG
-                        qDebug() << "russian:" << russian;
+            qDebug() << "russian:" << russian;
 #endif
             if(maxThroughput < russian)
                 break;

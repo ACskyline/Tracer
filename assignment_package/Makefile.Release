@@ -291,7 +291,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_cameracontrolshelp.h $(OBJECTS)
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.277.Release  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ -o Makefile.Release pathtracer.pro
+	@$(QMAKE) -spec win32-g++ CONFIG+=debug -o Makefile.Release pathtracer.pro
 
 qmake_all: FORCE
 

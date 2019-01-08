@@ -110,7 +110,7 @@ float WarpFunctions::squareToHemisphereUniformPDF(const Point3f &sample)
 Point3f WarpFunctions::squareToHemisphereCosine(const Point2f &sample)
 {
     //TODO
-    glm::vec3 temp = squareToDiskUniform(sample);
+    glm::vec3 temp = squareToDiskConcentric(sample);//squareToDiskUniform(sample);
     temp.z = glm::sqrt(1 - temp.x*temp.x - temp.y*temp.y);
     return temp;
     //throw std::runtime_error("You haven't yet implemented cosine-weighted hemisphere warpi<float>()ng!");
@@ -119,6 +119,6 @@ Point3f WarpFunctions::squareToHemisphereCosine(const Point2f &sample)
 float WarpFunctions::squareToHemisphereCosinePDF(const Point3f &sample)
 {
     //TODO
-    return glm::dot(sample, glm::vec3(0,0,1)) / glm::pi<float>();
+    return glm::abs(glm::dot(sample, glm::vec3(0,0,1))) / glm::pi<float>();
     //return 0;
 }
