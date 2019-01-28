@@ -13,7 +13,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling,
 
 * ### Lens Based Camera
 
-* ### BVH + KD Tree
+* ### BVH
 
 * ### Texture
 
@@ -27,7 +27,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling,
 
 ---
 
-* ### BVH + KD Tree
+* ### BVH
 
 * ### Chrome Material
 
@@ -39,7 +39,7 @@ This project is a path tracer. It is developed in Qt. Multi-importance sampling,
 
 ---
 
-* ### BVH + KD Tree
+* ### BVH
 
 * ### Texture 
 
