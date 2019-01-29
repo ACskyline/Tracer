@@ -2,6 +2,8 @@
 #include "scene/lights/diffusearealight.h"
 #include "warpfunctions.h"
 
+#define CAUSTIC_ONLY
+
 PhotonMapper::PhotonMapper(int numPhotons, std::vector<Photon> *_photons, std::vector<Photon> *_caustics, Scene *s, std::shared_ptr<Sampler> sampler, int recursionLimit)
     : Integrator(Bounds2i(Point2i(0,0), Point2i(0,0)), s, sampler, recursionLimit), preprocessing(true), numPhotons(numPhotons), photons(_photons), caustics(_caustics)
 {}
@@ -60,7 +62,7 @@ void PhotonMapper::Render()
                 Vector3f localY;
                 CoordinateSystem(localZ, &localX, &localY);
                 glm::mat3 l2w(localX, localY, localZ);
-                Vector3f directionWorld = l2w * directionLocal;
+                Vector3f directionWorld = glm::normalize(l2w * directionLocal);
                 Ray r(itShape.point, directionWorld);
                 Photon photonThisLight(itShape.point,DALights[i]->emittedLight / photonNumThisLight,-directionWorld);
                 //float possibleMax = glm::max(photonThisLight.color.x,glm::max(photonThisLight.color.y,photonThisLight.color.z));
@@ -80,6 +82,15 @@ void PhotonMapper::Render()
                             Color3f color_temp = it.bsdf->Sample_f(wi, &wo_temp, sampler->Get2D(), &pdf_temp, BSDF_ALL, &type_temp);
                             throughput = color_temp * throughput * AbsDot(wi, it.bsdf->normal) / pdf_temp;
 
+                            //update wi and pos, but leave color before storing
+                            //  color
+                            //     \     /
+                            //   wi \   /
+                            //       \ /
+                            //      ----- pos
+                            photonThisLight.wi = wi;
+                            photonThisLight.pos = it.point;
+
                             if(!(type_temp&BSDF_SPECULAR))//only store non specular photon
                             {
                                 if(!AllSpecularBefore&&k!=0)//not caustic and not direct light
@@ -88,11 +99,8 @@ void PhotonMapper::Render()
                                 }
                                 else if(AllSpecularBefore&&k!=0)//caustic
                                 {
-                                    //TO DO
-                                    //
-                                    //
-                                    //
-                                    //store in another kd tree
+                                    photons->push_back(photonThisLight);
+                                    //also store in another kd tree
                                     caustics->push_back(photonThisLight);
                                 }
 
@@ -103,9 +111,9 @@ void PhotonMapper::Render()
                                 if(k==0) AllSpecularBefore = true;
                             }
 
-                            photonThisLight.wi = wi;
+                            //update color now
                             photonThisLight.color = color_temp * photonThisLight.color * AbsDot(wi, it.bsdf->normal) / pdf_temp;
-                            photonThisLight.pos = it.point;
+
 
                             r = it.SpawnRay(wo_temp);
 #define EARLY_TERMINATE
@@ -137,7 +145,7 @@ Color3f PhotonMapper::Li(const Ray &ray, const Scene &scene, std::shared_ptr<Sam
     if(depth<0)
         return Color3f(0);
 
-    Color3f finalColor;
+    Color3f finalColor(0,0,0);
 
     //1.Normal MIS
     Intersection it;
@@ -148,6 +156,7 @@ Color3f PhotonMapper::Li(const Ray &ray, const Scene &scene, std::shared_ptr<Sam
 
         if(it.objectHit->ProduceBSDF(&it))
         {
+#ifndef CAUSTIC_ONLY
 //#define MYDEBUG
 #ifndef MYDEBUG
 
@@ -283,10 +292,24 @@ Color3f PhotonMapper::Li(const Ray &ray, const Scene &scene, std::shared_ptr<Sam
             float area = glm::pi<float>() * photonSearchRadius * photonSearchRadius;
             for(int m = 0;m<phoNum;m++)
             {
-                phoColor += pho[m].color * it.bsdf->f(wo, pho[m].wi) / it.bsdf->Pdf(wo, pho[m].wi);
+                phoColor += pho[m].color * it.bsdf->f(wo, pho[m].wi) * AbsDot(pho[m].wi, it.bsdf->normal) / it.bsdf->Pdf(wo, pho[m].wi);
             }
             phoColor /= area;
             finalColor+=phoColor;
+#else
+            Color3f phoColor(0.f);
+            std::vector<Photon> pho = kdTreeCaustic->particlesInSphere(it.point, photonSearchRadius, it.normalGeometric);
+            //use another tree!! kdTreeCaustic
+            float phoNum = pho.size();
+            float area = glm::pi<float>() * photonSearchRadius * photonSearchRadius;
+            for(int m = 0;m<phoNum;m++)
+            {
+                phoColor += pho[m].color * it.bsdf->f(wo, pho[m].wi) * AbsDot(pho[m].wi, it.bsdf->normal) / it.bsdf->Pdf(wo, pho[m].wi);
+            }
+            phoColor /= area;
+            finalColor+=phoColor;
+#endif
+
         }
         else
         {

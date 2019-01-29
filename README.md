@@ -121,7 +121,7 @@ Directlight Integrator 768x512 pixels 10x10 samples
 
 ---
 
-* ### Experimental Photon Mapper
+* ### Unfinished Photon Mapper
 
 ###### Photon Integrator 500,000 photons emitted, sampling radius 1.9
 
@@ -130,3 +130,9 @@ Directlight Integrator 768x512 pixels 10x10 samples
 ###### Photon Integrator 2,000,000 photons emitted, sampling radius 1.8
 
 ![](photon_2000000_1.8.png)
+
+###### Photon Integrator 100,000 photons emitted, sampling radius 0.8
+
+|    Caustic Photon Map     |     Indirect Photon Map    |     Path Tracer Reference    |
+|:-------------------------:|:--------------------------:|:----------------------------:|
+|![](caustic_photon_map.png)|![](indirect_photon_map.png)|![](path_tracer_reference.png)|
